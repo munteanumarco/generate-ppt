@@ -1,5 +1,6 @@
 import argparse
 import requests
+import os
 from bs4 import BeautifulSoup
 from pptx import Presentation
 from pptx.util import Inches
@@ -64,3 +65,4 @@ for text in text_list:
         paragraph.font.bold = True # set font to bold
 # Save the PowerPoint presentation
 prs.save("output.pptx")
+os.system(f"open output.pptx")
