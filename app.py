@@ -21,6 +21,13 @@ class MainWindow(QMainWindow):
         title_label.move(20, 10)
         title_label.resize(200, 20)
 
+        script_dir = os.path.dirname(os.path.realpath(__file__))
+        self.genppt_path = os.path.join(script_dir, 'genppt.py')
+
+        self.req_path = os.path.join(script_dir, 'requirements.txt')
+        #install dependencies 
+        subprocess.run(['pip', 'install', '-r', self.req_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
         # Connect the button to a function that runs the PowerPoint script
         self.button.clicked.connect(self.generate_ppt)
 
@@ -29,7 +36,7 @@ class MainWindow(QMainWindow):
         url = self.url_input.text()
 
         # Run the PowerPoint script with the URL as an argument
-        subprocess.run(["python3", "genppt.py", url])
+        subprocess.run(["python3", self.genppt_path, url], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
