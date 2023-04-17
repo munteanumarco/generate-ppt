@@ -8,7 +8,7 @@ from pptx.enum.text import MSO_ANCHOR, MSO_AUTO_SIZE, PP_ALIGN
 
 #CUSTOMIZE HERE THE LOOK OF THE PPTX
 FONT = "Arial"
-FONT_SIZE = Inches(0.55) # = 55 in ppt
+FONT_SIZE = Inches(0.62) # = 55 in ppt
 ######################################
 
 
@@ -54,12 +54,13 @@ for text in text_list:
     text_frame.text_frame.vertical_anchor = MSO_ANCHOR.MIDDLE # center text vertically
     text_frame.text_frame.word_wrap = True # wrap text within the textbox
     text_frame.text_frame.auto_size = MSO_AUTO_SIZE.TEXT_TO_FIT_SHAPE # auto-size the text to fit the shape
-    text_frame.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER # center text horizontally
+    for p in text_frame.text_frame.paragraphs:
+        p.alignment = PP_ALIGN.CENTER # center text horizontally
 
     for paragraph in text_frame.text_frame.paragraphs:
         paragraph.font.color.rgb = RGBColor(255, 255, 255) # set text color to white
-        paragraph.font.name = 'Arial' # set font to Times New Roman
-        paragraph.font.size = Inches(0.55) # set font size to 55 points
+        paragraph.font.name = FONT # set font to Times New Roman
+        paragraph.font.size = FONT_SIZE # set font size to 55 points
         paragraph.font.bold = True # set font to bold
 # Save the PowerPoint presentation
 prs.save("output.pptx")
