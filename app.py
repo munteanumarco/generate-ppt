@@ -42,7 +42,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = MainWindow()
     window.setGeometry(100, 100, 600, 200)
-    icon_path = os.path.join(os.getcwd(), 'icon2.png')
+    icon_path = os.path.join(os.getcwd(), 'icon.png')
     icon = QIcon(icon_path)
     # Set the icon for the main window
     window.setWindowIcon(icon)
